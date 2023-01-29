@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { selectWords } from "../../features/dictionary/dictionarySlice";
 import { addNewLog, increment } from "../../features/gameLog/gameLogSlice";
+import ProgressBar from "@ramonak/react-progress-bar";
 
 type Answer = {
   isCorrect: boolean;
@@ -96,10 +97,11 @@ export const Quiz = () => {
           {showScore && (
             <div className="title">
               {Math.floor((score / numberOfQuiz) * 100)}% was correct
+              <ProgressBar completed={Math.floor((score / numberOfQuiz) * 100)} customLabel=" " className="mt-3"/>
             </div>
           )}
           <button className="button is-primary" onClick={handleGameToggler}>
-            Starth the game
+            Start the game
           </button>
           {isError && (
             <div className="has-text-danger mt-2">
@@ -113,11 +115,12 @@ export const Quiz = () => {
             <div className="title">
               Question {currentQuestion + 1} / {numberOfQuiz}
             </div>
+            <ProgressBar completed={((currentQuestion + 1) / numberOfQuiz) * 100} customLabel=" " />
             <div className="subtitle mt-3">
               Select correct translate to {questions[currentQuestion].eng}
             </div>
           </div>
-          <div className="buttons mt-3">
+          <div className="columns is-mobile mt-3 buttons">
             {questions[currentQuestion].answers.map((answer) => (
               <button
                 onClick={() =>
@@ -126,7 +129,7 @@ export const Quiz = () => {
                     questions[currentQuestion].eng
                   )
                 }
-                className="button is-primary"
+                className="column button is-primary"
                 key={answer.id}
               >
                 {answer.ua}

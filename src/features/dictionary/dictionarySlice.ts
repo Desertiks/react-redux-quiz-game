@@ -80,8 +80,8 @@ const initialState: DictionaryState = {
       id: 14,
     },
     {
-      ua: "Бумага",
-      eng: "Papper",
+      ua: "Папір",
+      eng: "Paper",
       id: 15,
     },
   ],
