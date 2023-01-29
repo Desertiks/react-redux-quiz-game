@@ -1,11 +1,11 @@
 import React from "react";
-import "./App.css";
 import { PageNavLink } from "./components/PageNavLink/PageNavLink";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { HomePage } from "./pages/HomePage/HomePage";
 import { FormPage } from "./pages/FormPage/FormPage";
 import { QuizPage } from "./pages/QuizPage/QuizPage";
 import { NoPage } from "./pages/NoPage/NoPage";
+import { LogsPage } from "./pages/LogsPage/LogsPage";
 
 function App() {
   return (
@@ -19,6 +19,7 @@ function App() {
             <PageNavLink to="/" text="Home" />
             <PageNavLink to="/form" text="Form" />
             <PageNavLink to="/quiz" text="Quiz" />
+            <PageNavLink to="/logs" text="Log" />
           </div>
         </div>
       </nav>
@@ -31,6 +32,7 @@ function App() {
             <Route path="*" element={<NoPage />} />
             <Route path="form" index element={<FormPage />} />
             <Route path="quiz" element={<QuizPage />} />
+            <Route path="logs" element={<LogsPage />} />
           </Routes>
         </div>
       </div>

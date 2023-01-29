@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import {
   addNewWord,
   selectWords,
@@ -14,7 +13,7 @@ export const Form: React.FC = () => {
 
   const words = useAppSelector(selectWords);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleQueryUa = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsExist(false);
@@ -50,7 +49,6 @@ export const Form: React.FC = () => {
       setQueryEng("");
     } else {
       setIsExist(true);
-      console.log(newPair);
     }
   };
 

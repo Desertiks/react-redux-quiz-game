@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { selectWords } from "../../features/dictionary/dictionarySlice";
+import { addNewLog, increment } from "../../features/gameLog/gameLogSlice";
 
 type Answer = {
   isCorrect: boolean;
@@ -22,6 +23,9 @@ export const Quiz = () => {
   const [isError, setIsError] = useState(false);
 
   const data = useAppSelector(selectWords);
+
+
+  const dispatch = useAppDispatch();
   const numberOfQuiz = 10;
 
   function shuffle<T>(array: T[]) {
@@ -31,12 +35,21 @@ export const Quiz = () => {
       .map(({ value }) => value);
   }
 
-  const handleAnswerOptionClick = (isCorrect: boolean) => {
-    if (isCorrect) {
+  const handleAnswerOptionClick = (answer: Answer, eng: string) => {
+    if (answer.isCorrect) {
       setScore(score + 1);
     }
 
+    const logObject = {
+      eng,
+      ua: answer.ua,
+      wasCorrect: answer.isCorrect,
+    };
+
+    dispatch(addNewLog(logObject));
+
     const nextQuestion = currentQuestion + 1;
+
     if (nextQuestion < questions.length) {
       setCurrentQuestion(nextQuestion);
     } else {
@@ -58,7 +71,11 @@ export const Quiz = () => {
         ...shuffled
           .filter((shuffled) => shuffled.ua !== word.ua)
           .slice(0, 3)
-          .map((shuffled) => ({ isCorrect: shuffled.ua === word.ua, ua: shuffled.ua, id: shuffled.id })),
+          .map((shuffled) => ({
+            isCorrect: shuffled.ua === word.ua,
+            ua: shuffled.ua,
+            id: shuffled.id,
+          })),
         { isCorrect: true, ua: word.ua, id: word.id },
       ]),
     }));
@@ -69,6 +86,7 @@ export const Quiz = () => {
     setShowScore(false);
     setCurrentQuestion(0);
     setScore(0);
+    dispatch(increment());
   };
 
   return (
@@ -92,15 +110,22 @@ export const Quiz = () => {
       ) : (
         <>
           <div>
-            <div className="title">Question {currentQuestion + 1}</div>
-            <div className="subtitle">
+            <div className="title">
+              Question {currentQuestion + 1} / {numberOfQuiz}
+            </div>
+            <div className="subtitle mt-3">
               Select correct translate to {questions[currentQuestion].eng}
             </div>
           </div>
-          <div className="buttons">
+          <div className="buttons mt-3">
             {questions[currentQuestion].answers.map((answer) => (
               <button
-                onClick={() => handleAnswerOptionClick(answer.isCorrect)}
+                onClick={() =>
+                  handleAnswerOptionClick(
+                    answer,
+                    questions[currentQuestion].eng
+                  )
+                }
                 className="button is-primary"
                 key={answer.id}
               >
