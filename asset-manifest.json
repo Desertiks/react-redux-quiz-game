@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/react-redux-quiz-game/static/css/main.b4e7b695.css",
-    "main.js": "/react-redux-quiz-game/static/js/main.a663b411.js",
+    "main.js": "/react-redux-quiz-game/static/js/main.3d889c68.js",
     "index.html": "/react-redux-quiz-game/index.html",
     "main.b4e7b695.css.map": "/react-redux-quiz-game/static/css/main.b4e7b695.css.map",
-    "main.a663b411.js.map": "/react-redux-quiz-game/static/js/main.a663b411.js.map"
+    "main.3d889c68.js.map": "/react-redux-quiz-game/static/js/main.3d889c68.js.map"
   },
   "entrypoints": [
     "static/css/main.b4e7b695.css",
-    "static/js/main.a663b411.js"
+    "static/js/main.3d889c68.js"
   ]
 }
