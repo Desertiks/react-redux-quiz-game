@@ -19,7 +19,7 @@ function App() {
             <PageNavLink to="/" text="Home" />
             <PageNavLink to="/form" text="Form" />
             <PageNavLink to="/quiz" text="Quiz" />
-            <PageNavLink to="/logs" text="Log" />
+            <PageNavLink to="/logs" text="Logs" />
           </div>
         </div>
       </nav>

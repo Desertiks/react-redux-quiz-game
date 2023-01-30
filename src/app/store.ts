@@ -1,4 +1,4 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import dictionaryReducer from '../features/dictionary/dictionarySlice';
 import logsReducer from '../features/gameLog/gameLogSlice';
 

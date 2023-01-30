@@ -10,8 +10,6 @@ export const LogsList = () => {
     (logs.filter((log) => log.wasCorrect).length / logs.length) * 100
   );
 
-  console.log(averageCorrect);
-
   return (
     <>
       <div className="box">
